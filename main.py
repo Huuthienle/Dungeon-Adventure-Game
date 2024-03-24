@@ -155,35 +155,50 @@ def room_choose():
         player["col"] = 2
     if room_choice == 4: 
         player["col"] = 3
+    information()
 
-
-def choice():
+def choice1():
     global col, row, floor_choice
     if decision == 1:
         floor_choice = int(input("Your floor you want to go to is "))
         if floor_choice == 1:
-            row = 0
+            player["row"] = 0
             room_choose()
         if floor_choice == 2:
-            row = 1
+            player["row"] = 1
             room_choose()
         if floor_choice == 3:
-            row = 2
+            player["row"] = 2
             room_choose()
-    if decision == 2:
+
+
+def choice2():
+    if decision == 2 and (player["col"] < 3):
         player["col"] = player["col"] + 1
-        if player["row"] == 2:
-            player["col"] = player["col"] - 1
         information()
-    if decision == 4:
+    if decision == 2 and (player["col"] >= 3):
+        print("This is the end of this floor")
+        information()
+
+
+def choice4():
+    if decision == 4 and (player["row"] < 2):
         player["row"] = player["row"] + 1
         if player["row"] == 1:
             player["col"] = 2
         if player["row"] == 2:
             player["col"] = 2
         information()
+    if decision == 4 and (player["row"] >= 2):
+        information()
     else:
         return("Your choice is invalid")
+
+
+def choice():
+    choice1()
+    choice2()
+    choice4()
 
 
 def start():
